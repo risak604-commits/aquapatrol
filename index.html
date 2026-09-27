@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#12351f">
+  <title>AquaPatrol — Simple Water Monitoring for Mud Crab Farmers</title>
+  <meta name="description" content="AquaPatrol is an affordable IoT-powered crab-farm monitoring system that tracks pH, TDS, temperature, and turbidity (25-50 NTU) in real time. Multi-language and visual support for farmers across India and Asia.">
+  <link rel="icon" type="image/jpeg" href="assets/aquapatrol_logo.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================================================
+       STICKY HEADER WITH PERMANENT LOGO
+       =================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="wrap nav-container">
+      <a class="brand" href="#home" title="AquaPatrol Home">
+        <div class="header-logo-frame">
+          <img src="assets/aquapatrol_logo.jpg" alt="AquaPatrol Shield Logo" class="header-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">AquaPatrol</span>
+          <span class="brand-badge" data-i18n="brand_sub">Simple Crab Farm Health Monitoring</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" id="navlinks" aria-label="Main Navigation">
+        <a href="#check" data-i18n="nav_check">💧 Check Water</a>
+        <a href="#learn" data-i18n="nav_learn">🎬 Visual &amp; Video Guide</a>
+        <a href="#checks" data-i18n="nav_checks">What It Checks</a>
+        <a href="#how" data-i18n="nav_how">How It Works</a>
+        <a href="#why" data-i18n="nav_why">Why Use It</a>
+        <a href="#faq" data-i18n="nav_faq">Questions</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Multi-Language Selector Dropdown -->
+        <div class="lang-select-wrapper" title="Change Language / भाषा बदलें">
+          <select class="lang-select" id="langSelect" aria-label="Select Language">
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+            <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+            <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+            <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+            <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+            <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+            <option value="or">🇮🇳 ଓଡ଼ିଆ (Odia)</option>
+          </select>
+          <span class="lang-arrow">▼</span>
+        </div>
+
+        <!-- Read Aloud Voice Button for Farmers -->
+        <button class="audio-btn" id="speakBtn" type="button" title="Listen to status">
+          <span data-i18n="btn_audio_read">🔊 Read Page Aloud</span>
+        </button>
+
+        <button class="menu-toggle" id="menuBtn" type="button" aria-label="Toggle Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================================================
+         HERO SECTION (ASYMMETRIC BENTO LAYOUT)
+         =================================================== -->
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div class="reveal-on-scroll">
+          <span class="kicker" data-i18n="hero_kicker">🌾 Made for farmers · India &amp; Asia</span>
+          <h1>
+            <span data-i18n="hero_title">Know your pond water. Protect your crabs.</span>
+          </h1>
+          <p class="hero-desc" data-i18n="hero_desc">
+            AquaPatrol is an affordable IoT-powered crab-farm monitoring system. It checks critical water conditions in real time and alerts farmers before mass mortality occurs.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#check" data-i18n="btn_check_water">💧 Check Pond Water</a>
+            <a class="btn btn-video-hero" href="#learn" data-i18n="btn_watch_video">🎬 Watch Farmer Video</a>
+            <a class="btn btn-secondary" href="#how" data-i18n="nav_how">▶ How It Works</a>
+          </div>
+
+          <!-- Non-uniform Bento Quick Stats -->
+          <div class="quick-stats-grid">
+            <div class="quick-box">
+              <strong data-i18n="stat_247">24/7</strong>
+              <span data-i18n="stat_247_label">Continuous readings</span>
+            </div>
+            <div class="quick-box">
+              <strong data-i18n="stat_sensors">4</strong>
+              <span data-i18n="stat_sensors_label">Key parameters</span>
+            </div>
+            <div class="quick-box">
+              <strong data-i18n="stat_esp">ESP32</strong>
+              <span data-i18n="stat_esp_label">Edge processor</span>
+            </div>
+            <div class="quick-box">
+              <strong data-i18n="stat_mud">100%</strong>
+              <span data-i18n="stat_mud_label">Pond mud resistant</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Live Pond Telemetry Card (Turbidity 35 cm Included) -->
+        <div class="hero-visual-card reveal-on-scroll delay-1" aria-label="AquaPatrol Live Pond Telemetry">
+          <div class="phone-shell">
+            <div class="phone-header">
+              <div class="pond-badge">
+                <span data-i18n="live_pond">🌊 Pond 01 — Kakinada</span>
+              </div>
+              <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span data-i18n="live_badge">● LIVE</span>
+              </div>
+            </div>
+
+            <!-- 4 Metrics: pH, TDS, Temp, turbidity (25-50 NTU) -->
+            <div class="hero-metric-grid">
+              <div class="metric-pill">
+                <div class="metric-pill-header">
+                  <small data-i18n="metric_ph">pH</small>
+                  <span>🧪</span>
+                </div>
+                <b id="heroPhVal">7.6</b>
+                <div class="range-hint" data-i18n="metric_ph_range">Healthy: 6.5 – 8.5</div>
+              </div>
+
+              <div class="metric-pill">
+                <div class="metric-pill-header">
+                  <small data-i18n="metric_tds">TDS</small>
+                  <span>💧</span>
+                </div>
+                <b><span id="heroTdsVal">18,500</span> <small style="font-size:14px;color:var(--text-muted)">ppm</small></b>
+                <div class="range-hint" data-i18n="metric_tds_range">Healthy: 10k – 25k ppm</div>
+              </div>
+
+              <div class="metric-pill">
+                <div class="metric-pill-header">
+                  <small data-i18n="metric_temp">Temperature</small>
+                  <span>🌡️</span>
+                </div>
+                <b id="heroTempVal">28.4°</b>
+                <div class="range-hint" data-i18n="metric_temp_range">Healthy: 26° – 32°C</div>
+              </div>
+
+              <div class="metric-pill turbidity-pill">
+                <div class="metric-pill-header">
+                  <small data-i18n="metric_turb">Turbidity (Clarity)</small>
+                  <span>👁️</span>
+                </div>
+                <b id="heroTurbVal">35 NTU</b>
+                <div class="range-hint" data-i18n="metric_turb_range">Healthy: 25 – 50 NTU</div>
+              </div>
+            </div>
+
+            <div class="pond-overall-status">
+              <span>🦀</span>
+              <span data-i18n="status_healthy_all">✓ WATER STATUS: HEALTHY</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         VISUAL LEARNING & VIDEO DEMO SECTION (FOR FARMERS)
+         =================================================== -->
+    <section class="visual-learning-section" id="learn">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-tag" data-i18n="vl_tag">🌾 Visual Learning For Farmers</span>
+          <h2 data-i18n="vl_title">No Need To Read. See &amp; Hear How It Works.</h2>
+          <p data-i18n="vl_desc">
+            Designed for small-holder farmers. Watch real video demonstrations from the field and understand how color alerts save your crabs.
+          </p>
+        </div>
+
+        <!-- Single Featured Video Spotlight (Farmer Demonstration) -->
+        <div class="video-showcase-grid video-single-spotlight">
+          <!-- Main Video Card: Real Farmer Field Demo -->
+          <article class="video-card reveal-on-scroll">
+            <div class="video-player-box">
+              <span class="video-overlay-badge">
+                <span>📹</span>
+                <span data-i18n="v1_tag1">🎥 Real Field Video</span>
+              </span>
+              <video controls playsinline preload="metadata" poster="assets/farmer_field.jpg">
+                <source src="assets/farmer_demo.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <div>
+                <h3 data-i18n="v1_title">Real Pond Setup &amp; Farmer Demonstration</h3>
+                <p data-i18n="v1_desc">
+                  Watch how AquaPatrol is deployed in muddy coastal crab ponds and how real-time readings alert the farmer right away.
+                </p>
+              </div>
+              <div class="video-meta-tags">
+                <span class="v-tag">🌱 Brackish Water Ponds</span>
+                <span class="v-tag">🦀 Mud Crab (Scylla serrata)</span>
+                <span class="v-tag" data-i18n="v1_tag2">🌾 Mud Crab Farming</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- What This Video Shows (Practical Benefit Highlights) -->
+          <div class="video-takeaways-panel reveal-on-scroll delay-1">
+            <div class="takeaway-box">
+              <div class="takeaway-icon">🌊</div>
+              <div class="takeaway-content">
+                <h4 data-i18n="v1_step1_title">1. Real Mud &amp; Brackish Water Testing</h4>
+                <p data-i18n="v1_step1_desc">See how the sensor probes sit directly in the pond without getting clogged by thick coastal silt or mud.</p>
+              </div>
+            </div>
+
+            <div class="takeaway-box">
+              <div class="takeaway-icon">📱</div>
+              <div class="takeaway-content">
+                <h4 data-i18n="v1_step2_title">2. Zero Lab Work Needed</h4>
+                <p data-i18n="v1_step2_desc">Readings for pH, TDS, temperature, and turbidity (25–50 NTU) appear instantly on your phone with clear color codes.</p>
+              </div>
+            </div>
+
+            <div class="takeaway-box">
+              <div class="takeaway-icon">🚨</div>
+              <div class="takeaway-content">
+                <h4 data-i18n="v1_step3_title">3. Instant Alert to Save Harvest</h4>
+                <p data-i18n="v1_step3_desc">If water conditions deteriorate, an automatic alarm gives the farmer time to start aeration before crabs die.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Illiterate Farmer Visual Light Cues (Green, Yellow, Red) -->
+        <div class="visual-cues-bar reveal-on-scroll delay-2">
+          <div class="visual-cue-card cue-safe">
+            <div class="cue-icon-large">🟢</div>
+            <div class="cue-content">
+              <h4 data-i18n="cue_safe_title">🟢 Green = Water is Safe</h4>
+              <p data-i18n="cue_safe_desc">Crabs are eating well and active. No action needed.</p>
+            </div>
+          </div>
+
+          <div class="visual-cue-card cue-warn">
+            <div class="cue-icon-large">🟡</div>
+            <div class="cue-content">
+              <h4 data-i18n="cue_warn_title">🟡 Yellow = Water Needs Care</h4>
+              <p data-i18n="cue_warn_desc">Turbidity or pH is moving away. Add lime or fresh water.</p>
+            </div>
+          </div>
+
+          <div class="visual-cue-card cue-bad">
+            <div class="cue-icon-large">🔴</div>
+            <div class="cue-content">
+              <h4 data-i18n="cue_bad_title">🔴 Red = Danger! Act Now</h4>
+              <p data-i18n="cue_bad_desc">Turn on paddle aerators immediately and check water.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         INTERACTIVE SIMULATOR (WITH TURBIDITY 25-50 NTU)
+         =================================================== -->
+    <section class="simulator-section" id="check">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <h2 data-i18n="sim_intro_title">Check the water in a simple way</h2>
+          <p data-i18n="sim_intro_desc">
+            Move the sliders to simulate changes in pond water and observe the live status and water clarity Secchi tube.
+          </p>
+        </div>
+
+        <div class="sim-dashboard reveal-on-scroll">
+          <div class="sim-head">
+            <div class="sim-title-group">
+              <strong data-i18n="sim_title">🌾 Pond 01 — Interactive Water Simulator</strong>
+              <span class="sim-badge" data-i18n="sim_subtitle">SIMULATION ONLY</span>
+            </div>
+            <div class="sim-actions">
+              <button class="sim-audio-cue" id="simListenBtn" type="button" title="Speak status aloud">
+                <span data-i18n="sim_listen_btn">🔊 Speak Status</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="sim-body">
+            <!-- Left: 4 Sliders -->
+            <div class="controls-grid">
+              <!-- pH Control -->
+              <div class="control-box">
+                <div class="control-header">
+                  <span class="control-label" data-i18n="metric_ph">pH</span>
+                  <span class="control-num" id="phVal">7.6</span>
+                </div>
+                <input class="range-input" id="ph" type="range" min="4.0" max="10.0" step="0.1" value="7.6" aria-label="pH Slider">
+                <div class="range-scale"><span>4.0 (Acid)</span><span>10.0 (Alkaline)</span></div>
+                <span class="safe-zone-pill" data-i18n="safe_ph_label">Healthy: 6.5 – 8.5</span>
+              </div>
+
+              <!-- TDS Control (Brackish Mud Crab range: 10k - 25k ppm) -->
+              <div class="control-box">
+                <div class="control-header">
+                  <span class="control-label" data-i18n="metric_tds">TDS</span>
+                  <span class="control-num" id="tdsVal">18,000 ppm</span>
+                </div>
+                <input class="range-input" id="tds" type="range" min="5000" max="35000" step="250" value="18000" aria-label="TDS Salinity Slider">
+                <div class="range-scale"><span>5,000 ppm (5k)</span><span>35,000 ppm (35k)</span></div>
+                <span class="safe-zone-pill" data-i18n="safe_tds_label">Healthy: 10k – 25k ppm</span>
+              </div>
+
+              <!-- Temperature Control -->
+              <div class="control-box">
+                <div class="control-header">
+                  <span class="control-label" data-i18n="metric_temp">Temperature</span>
+                  <span class="control-num" id="tempVal">28.4 °C</span>
+                </div>
+                <input class="range-input" id="temp" type="range" min="18.0" max="40.0" step="0.2" value="28.4" aria-label="Temperature Slider">
+                <div class="range-scale"><span>18 °C</span><span>40 °C</span></div>
+                <span class="safe-zone-pill" data-i18n="safe_temp_label">Healthy: 26° – 32°C</span>
+              </div>
+
+              <!-- TURBIDITY CONTROL (25 - 50 NTU) -->
+              <div class="control-box turbidity-box">
+                <div class="control-header">
+                  <span class="control-label" data-i18n="metric_turb">Turbidity</span>
+                  <span class="control-num" id="turbVal" style="color:var(--water-700)">35 NTU</span>
+                </div>
+                <input class="range-input" id="turb" type="range" min="5" max="100" step="1" value="35" aria-label="Turbidity NTU Slider">
+                <div class="range-scale"><span>5 NTU (Clear)</span><span>100 NTU (Muddy)</span></div>
+                <span class="safe-zone-pill" style="background:var(--water-100);color:var(--water-700);border:1px solid #bae6fd" data-i18n="safe_turb_label">
+                  Healthy: 25 – 50 NTU
+                </span>
+              </div>
+            </div>
+
+            <!-- Right: Dynamic Optical Turbidity Visualizer -->
+            <div class="turbidity-visualizer">
+              <div>
+                <div style="font-weight:800;font-size:16px;color:var(--green-900);margin-bottom:8px" data-i18n="secchi_title">
+                  Water Clarity &amp; Turbidity
+                </div>
+                <div class="secchi-cylinder" id="secchiCylinder">
+                  <div class="water-column" id="waterColumn"></div>
+                  <div class="secchi-disc" id="secchiDisc" title="Turbidity Indicator"></div>
+                  <div class="secchi-depth-mark" id="secchiDepthMark">35 NTU</div>
+                </div>
+              </div>
+              <div class="secchi-desc" id="secchiDesc" data-i18n="secchi_desc_opt">
+                ✓ 25–50 NTU: Optimal plankton density &amp; light penetration. Crabs thrive.
+              </div>
+            </div>
+
+            <!-- Dynamic Diagnostic Bar -->
+            <div class="sim-diagnosis-box healthy" id="demoStatus">
+              <div class="diagnosis-text" data-i18n="sim_healthy_msg">
+                ✓ All parameters are within the healthy range. Water is safe for mud crabs.
+              </div>
+              <button class="reset-btn" id="resetDemo" type="button" data-i18n="btn_reset">↺ Reset Example</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         WHAT AQUAPATROL CHECKS (ASYMMETRIC BENTO GRID)
+         =================================================== -->
+    <section class="checks-section" id="checks">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-tag" data-i18n="checks_tag">Comprehensive Probes</span>
+          <h2 data-i18n="checks_title">What AquaPatrol Checks in the Pond</h2>
+          <p data-i18n="checks_desc">
+            One rugged IoT device replaces multiple fragile glass meters and notebooks with reliable continuous monitoring.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1: pH (Wide card with photo background) -->
+          <article class="bento-card card-wide card-photo-bg reveal-on-scroll" style="background-image: url('assets/mud_crab.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-inner">
+              <span class="bento-icon">🧪</span>
+              <h3 data-i18n="check_ph_title">pH (Acidity &amp; Alkalinity)</h3>
+              <p data-i18n="check_ph_desc">
+                Crabs need a balanced pH of 7.5 to 8.5 to molt properly and form hard shells. Extreme pH burns gills and stops feeding.
+              </p>
+              <span class="bento-range" data-i18n="metric_ph_range">Healthy: 6.5 – 8.5</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Turbidity (25 - 50 NTU) -->
+          <article class="bento-card card-turbidity reveal-on-scroll delay-1">
+            <div>
+              <span class="bento-icon">👁️</span>
+              <h3 data-i18n="check_turb_title">Turbidity (25 – 50 NTU)</h3>
+              <p data-i18n="check_turb_desc">
+                Measures light scattering and suspended plankton density. 25–50 NTU maintains ideal natural feeding for mud crabs. Under 25 NTU triggers cannibalism &amp; bottom weeds; over 50 NTU cuts off oxygen &amp; clogs gills.
+              </p>
+            </div>
+            <span class="bento-range" data-i18n="metric_turb_range">Healthy: 25 – 50 NTU</span>
+          </article>
+
+          <!-- Card 3: TDS -->
+          <article class="bento-card reveal-on-scroll">
+            <div>
+              <span class="bento-icon">💧</span>
+              <h3 data-i18n="check_tds_title">TDS (Total Dissolved Solids)</h3>
+              <p data-i18n="check_tds_desc">
+                Monitors mineral balance and salinity levels so crabs don't experience sudden osmotic shock after rainfall.
+              </p>
+            </div>
+            <span class="bento-range" data-i18n="metric_tds_range">Healthy: 10k – 25k ppm</span>
+          </article>
+
+          <!-- Card 4: Water Temperature -->
+          <article class="bento-card reveal-on-scroll delay-1">
+            <div>
+              <span class="bento-icon">🌡️</span>
+              <h3 data-i18n="check_temp_title">Water Temperature</h3>
+              <p data-i18n="check_temp_desc">
+                Monitors day and night temperature swings (26°–32°C) to prevent thermal stress and appetite loss in mud crabs.
+              </p>
+            </div>
+            <span class="bento-range" data-i18n="metric_temp_range">Healthy: 26° – 32°C</span>
+          </article>
+
+          <!-- Card 5: ESP32 IoT Unit (Wide Card with photo) -->
+          <article class="bento-card card-wide card-photo-bg reveal-on-scroll delay-2" style="background-image: url('assets/iot_buoy.jpg');">
+            <div class="card-overlay"></div>
+            <div class="card-inner">
+              <span class="bento-icon">🧠</span>
+              <h3 data-i18n="check_esp_title">ESP32 Microcontroller</h3>
+              <p data-i18n="check_esp_desc">
+                Dual-core processor with onboard Wi-Fi and Bluetooth filters sensor noise and operates reliably outdoors in brackish crab ponds.
+              </p>
+              <span class="bento-range">240 MHz · Ultra-Low Power · Wi-Fi/GSM</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         HOW IT WORKS (6-STEP VISUAL PIPELINE)
+         =================================================== -->
+    <section class="how-section" id="how">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <h2 data-i18n="how_title">How It Works — Step by Step</h2>
+          <p data-i18n="how_desc">From the pond to the farmer's pocket: uninterrupted protection 24 hours a day.</p>
+        </div>
+
+        <div class="steps-pipeline">
+          <article class="step-card reveal-on-scroll">
+            <div class="step-head">
+              <span class="step-badge-num">1</span>
+              <span class="step-emoji">📍</span>
+            </div>
+            <h3 data-i18n="step1_title">1. Place Near Water</h3>
+            <p data-i18n="step1_desc">Mount AquaPatrol above the waterline. Probes submerge into the pond.</p>
+          </article>
+
+          <article class="step-card reveal-on-scroll delay-1">
+            <div class="step-head">
+              <span class="step-badge-num">2</span>
+              <span class="step-emoji">🌊</span>
+            </div>
+            <h3 data-i18n="step2_title">2. Sensors Read Water</h3>
+            <p data-i18n="step2_desc">Continuously samples pH, TDS, temperature, and turbidity (25–50 NTU).</p>
+          </article>
+
+          <article class="step-card reveal-on-scroll delay-2">
+            <div class="step-head">
+              <span class="step-badge-num">3</span>
+              <span class="step-emoji">⚙️</span>
+            </div>
+            <h3 data-i18n="step3_title">3. ESP32 Cleans Data</h3>
+            <p data-i18n="step3_desc">Filters out ripples and sensor noise so readings are stable and accurate.</p>
+          </article>
+
+          <article class="step-card reveal-on-scroll">
+            <div class="step-head">
+              <span class="step-badge-num">4</span>
+              <span class="step-emoji">📶</span>
+            </div>
+            <h3 data-i18n="step4_title">4. Cloud Telemetry</h3>
+            <p data-i18n="step4_desc">Secure wireless transmission sends telemetry to the farmer's dashboard.</p>
+          </article>
+
+          <article class="step-card reveal-on-scroll delay-1">
+            <div class="step-head">
+              <span class="step-badge-num">5</span>
+              <span class="step-emoji">🔔</span>
+            </div>
+            <h3 data-i18n="step5_title">5. Automatic Alerts</h3>
+            <p data-i18n="step5_desc">If turbidity or pH drifts away from safe limits, farmer gets an alert.</p>
+          </article>
+
+          <article class="step-card reveal-on-scroll delay-2">
+            <div class="step-head">
+              <span class="step-badge-num">6</span>
+              <span class="step-emoji">⚡</span>
+            </div>
+            <h3 data-i18n="step6_title">6. Quick Action</h3>
+            <p data-i18n="step6_desc">Farmer starts aerator or adds lime before crabs suffer stress or death.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         WHY USE IT (BEFORE VS AFTER ASYMMETRIC COMPARISON)
+         =================================================== -->
+    <section class="why-section" id="why">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <h2 data-i18n="why_title">Why AquaPatrol?</h2>
+          <p data-i18n="why_desc">Water can change between farm visits. Seeing the trend early saves your entire harvest.</p>
+        </div>
+
+        <div class="compare-container">
+          <!-- Traditional / Before Card -->
+          <article class="compare-card card-before reveal-on-scroll">
+            <div class="compare-card-head">
+              <div class="compare-icon-wrap">⚠️</div>
+              <h3 data-i18n="before_title">Without AquaPatrol (Manual)</h3>
+            </div>
+            <ul class="compare-list">
+              <li data-i18n="before_1">Manual tests only once a day or when crabs act sick.</li>
+              <li data-i18n="before_2">Night-time oxygen drops go completely unnoticed.</li>
+              <li data-i18n="before_3">Turbidity measured by guess or dirty hand dipping.</li>
+              <li data-i18n="before_4">First warning is often dead crabs floating on the pond bank.</li>
+            </ul>
+          </article>
+
+          <!-- AquaPatrol / After Card -->
+          <article class="compare-card card-after reveal-on-scroll delay-1">
+            <div class="compare-card-head">
+              <div class="compare-icon-wrap">🛡️</div>
+              <h3 data-i18n="after_title">With AquaPatrol (Smart IoT)</h3>
+            </div>
+            <ul class="compare-list">
+              <li data-i18n="after_1">Continuous automated readings 24 hours a day.</li>
+              <li data-i18n="after_2">Early warning when turbidity falls below 25 NTU or exceeds 50 NTU.</li>
+              <li data-i18n="after_3">Instant notification sent directly to your mobile phone.</li>
+              <li data-i18n="after_4">Act in advance with aerators or lime to protect profits.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         REAL AQUACULTURE FIELD GALLERY
+         =================================================== -->
+    <section class="gallery-section">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <span class="section-tag">Field Photography</span>
+          <h2>Proven In Coastal Crab Aquaculture</h2>
+          <p>Real environments where AquaPatrol provides continuous protection.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card reveal-on-scroll">
+            <img src="assets/farmer_field.jpg" alt="Farmer checking coastal pond">
+            <div class="gallery-caption">Coastal Brackish Pond</div>
+          </div>
+          <div class="gallery-card reveal-on-scroll delay-1">
+            <img src="assets/paddle_aerator.jpg" alt="Paddle aerator in crab pond">
+            <div class="gallery-caption">Paddle Wheel Aeration</div>
+          </div>
+          <div class="gallery-card reveal-on-scroll delay-2">
+            <img src="assets/liming_pond.jpg" alt="Farmer liming pond">
+            <div class="gallery-caption">Agricultural Liming Treatment</div>
+          </div>
+          <div class="gallery-card reveal-on-scroll delay-3">
+            <img src="assets/mud_crab.jpg" alt="Healthy mud crab">
+            <div class="gallery-caption">Healthy Mud Crab (Scylla serrata)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         TECH SPECIFICATIONS (ESP32)
+         =================================================== -->
+    <section class="tech-section">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll">
+          <h2>The Technology, Built for Rugged Ponds</h2>
+          <p>Industrial grade sensing with zero complicated jargon for the farmer.</p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-box reveal-on-scroll">
+            <strong>🧪 pH Probe</strong>
+            <span>Gel-filled electrode designed for brackish water calibration.</span>
+          </div>
+          <div class="tech-box reveal-on-scroll delay-1">
+            <strong>👁️ Turbidity Sensor</strong>
+            <span>Optical infrared transmittance probe reading turbidity (25–50 NTU).</span>
+          </div>
+          <div class="tech-box reveal-on-scroll delay-2">
+            <strong>💧 TDS Probe</strong>
+            <span>Titanium-coated pins for salt and mineral conductivity.</span>
+          </div>
+          <div class="tech-box reveal-on-scroll delay-3">
+            <strong>🌡️ Temp Probe</strong>
+            <span>Stainless steel DS18B20 digital waterproof thermal sensor.</span>
+          </div>
+          <div class="tech-box reveal-on-scroll delay-4">
+            <strong>🧠 ESP32 MCU</strong>
+            <span>Dual-core 240MHz with local buffering and GSM telemetry.</span>
+          </div>
+        </div>
+
+        <div class="esp-deep-dive reveal-on-scroll">
+          <h3>At the Heart: ESP-WROOM-32</h3>
+          <p>
+            The entire sensor suite connects to an ESP32 chip that operates 24/7 on solar power with battery backup. It removes noise from waves and splashes before telemetry is uploaded.
+          </p>
+          <p style="margin-top: 10px; font-size: 14px; color: #a5cfb5;">
+            <strong>Wireless:</strong> Wi-Fi + Bluetooth + GSM SIM &nbsp;·&nbsp;
+            <strong>Enclosure:</strong> IP65 Weatherproof &nbsp;·&nbsp;
+            <strong>Sampling:</strong> Continuous 1-minute averages
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         FREQUENTLY ASKED QUESTIONS (ACCORDIONS)
+         =================================================== -->
+    <section class="faq-section" id="faq">
+      <div class="wrap">
+        <div class="section-head reveal-on-scroll" style="text-align: center; margin-inline: auto;">
+          <h2 data-i18n="faq_title">Questions Crab Farmers Ask</h2>
+          <p>Straight answers in simple language without technical jargon.</p>
+        </div>
+
+        <div class="faq-container">
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-q" type="button">
+              <span data-i18n="faq_1_q">Do I need internet at the pond?</span>
+              <span class="faq-toggle-icon">＋</span>
+            </button>
+            <div class="faq-a" data-i18n="faq_1_a">
+              AquaPatrol supports Wi-Fi and cellular GSM. If connectivity is weak, readings are buffered locally on the ESP32 until the signal recovers.
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll delay-1">
+            <button class="faq-q" type="button">
+              <span data-i18n="faq_2_q">Why is Turbidity 25–50 NTU the healthy range?</span>
+              <span class="faq-toggle-icon">＋</span>
+            </button>
+            <div class="faq-a" data-i18n="faq_2_a">
+              In mud crab aquaculture, turbidity of 25–50 NTU represents the ideal balance of natural phytoplankton and sunlight. Below 25 NTU, water is too clear, exposing molting crabs to bird predation and weed choking. Above 50 NTU, heavy suspended silt chokes crab gills and causes severe nocturnal oxygen crashes.
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll delay-2">
+            <button class="faq-q" type="button">
+              <span data-i18n="faq_3_q">Can farmers who cannot read use this app?</span>
+              <span class="faq-toggle-icon">＋</span>
+            </button>
+            <div class="faq-a" data-i18n="faq_3_a">
+              Yes! AquaPatrol is built with big color-coded lights (Green, Yellow, Red), visual Secchi tubes, and an audio read-aloud button that speaks in Hindi, Telugu, Tamil, Bengali, Odia, Gujarati, Malayalam, and English.
+            </div>
+          </div>
+
+          <div class="faq-item reveal-on-scroll delay-3">
+            <button class="faq-q" type="button">
+              <span data-i18n="faq_4_q">Will the device survive rain, heat, and mud?</span>
+              <span class="faq-toggle-icon">＋</span>
+            </button>
+            <div class="faq-a" data-i18n="faq_4_a">
+              AquaPatrol is engineered in an IP65 water-resistant outdoor enclosure with corrosion-resistant aquaculture probes built specifically for coastal brackish water.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CONTACT & FARMER HELPLINE
+         =================================================== -->
+    <section class="contact-section" id="contact">
+      <div class="wrap contact-grid">
+        <div class="reveal-on-scroll">
+          <h2 data-i18n="contact_title">Protect Your Crab Farm Today</h2>
+          <p data-i18n="contact_desc">
+            Talk to our team to try AquaPatrol on your pond. No smartphone? A simple phone call works too.
+          </p>
+          <p style="font-weight: 700; color: #a5e2c0;">
+            Serving aquaculture across Andhra Pradesh, Tamil Nadu, Kerala, West Bengal, Odisha, Gujarat and international coastal farming regions.
+          </p>
+        </div>
+
+        <div class="contact-card-box reveal-on-scroll delay-1">
+          <a href="tel:+971581899486" id="contactCall">
+            <span data-i18n="contact_call">📞 Call Helpline: +971 58 189 9486</span>
+          </a>
+          <a href="https://wa.me/971581899486" target="_blank" rel="noopener" id="contactWa">
+            <span data-i18n="contact_wa">💬 WhatsApp Us: +971 58 189 9486</span>
+          </a>
+          <a href="mailto:aquapatrol26@gmail.com" id="contactEmail">
+            <span data-i18n="contact_email">✉️ Email: aquapatrol26@gmail.com</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================
+       FOOTER
+       =================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand-wrap">
+        <img src="assets/aquapatrol_logo.jpg" alt="AquaPatrol Logo" class="footer-logo">
+        <div>
+          <div class="footer-brand-title">AquaPatrol</div>
+          <div style="font-size:13px;color:#9fc7af" data-i18n="footer_text">
+            Smarter Water. Healthier Crabs. Better Farming for Indian Aquaculture.
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#check">Check Water</a>
+        <a href="#learn">Visual Guide</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div style="font-size:13px;color:#85ab94" data-i18n="copyright">
+        © 2026 AquaPatrol. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="topBtn" type="button" aria-label="Back to top">↑</button>
+
+  <!-- Floating Toast Notifications -->
+  <div class="toast-msg" id="toast">AquaPatrol is ready.</div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
