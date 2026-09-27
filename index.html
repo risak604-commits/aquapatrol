@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#12351f">
   <title>AquaPatrol — Simple Water Monitoring for Mud Crab Farmers</title>
   <meta name="description" content="AquaPatrol is an affordable IoT-powered crab-farm monitoring system that tracks pH, TDS, temperature, and turbidity (25-50 NTU) in real time. Multi-language and visual support for farmers across India and Asia.">
-  <link rel="icon" type="image/jpeg" href="assets/aquapatrol_logo.jpg">
+  <link rel="icon" type="image/jpeg" href="aquapatrol_logo.jpg">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,7 +19,7 @@
     <div class="wrap nav-container">
       <a class="brand" href="#home" title="AquaPatrol Home">
         <div class="header-logo-frame">
-          <img src="assets/aquapatrol_logo.jpg" alt="AquaPatrol Shield Logo" class="header-logo-img">
+          <img src="aquapatrol_logo.jpg" onerror="this.onerror=null;this.src='assets/aquapatrol_logo.jpg'" alt="AquaPatrol Shield Logo" class="header-logo-img">
         </div>
         <div class="brand-text">
           <span class="brand-name">AquaPatrol</span>
@@ -187,7 +187,8 @@
                 <span>📹</span>
                 <span data-i18n="v1_tag1">🎥 Real Field Video</span>
               </span>
-              <video controls playsinline preload="metadata" poster="assets/farmer_field.jpg">
+              <video controls playsinline preload="metadata" poster="farmer_field.jpg" style="background:#000;">
+                <source src="farmer_demo.mp4" type="video/mp4">
                 <source src="assets/farmer_demo.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
               </video>
@@ -383,7 +384,7 @@
 
         <div class="bento-grid">
           <!-- Card 1: pH (Wide card with photo background) -->
-          <article class="bento-card card-wide card-photo-bg reveal-on-scroll" style="background-image: url('assets/mud_crab.jpg');">
+          <article class="bento-card card-wide card-photo-bg reveal-on-scroll" style="background-image: url('mud_crab.jpg');">
             <div class="card-overlay"></div>
             <div class="card-inner">
               <span class="bento-icon">🧪</span>
@@ -432,7 +433,7 @@
           </article>
 
           <!-- Card 5: ESP32 IoT Unit (Wide Card with photo) -->
-          <article class="bento-card card-wide card-photo-bg reveal-on-scroll delay-2" style="background-image: url('assets/iot_buoy.jpg');">
+          <article class="bento-card card-wide card-photo-bg reveal-on-scroll delay-2" style="background-image: url('iot_buoy.jpg');">
             <div class="card-overlay"></div>
             <div class="card-inner">
               <span class="bento-icon">🧠</span>
@@ -570,19 +571,19 @@
 
         <div class="gallery-grid">
           <div class="gallery-card reveal-on-scroll">
-            <img src="assets/farmer_field.jpg" alt="Farmer checking coastal pond">
+            <img src="farmer_field.jpg" onerror="this.onerror=null;this.src='assets/farmer_field.jpg'" alt="Farmer checking coastal pond">
             <div class="gallery-caption">Coastal Brackish Pond</div>
           </div>
           <div class="gallery-card reveal-on-scroll delay-1">
-            <img src="assets/paddle_aerator.jpg" alt="Paddle aerator in crab pond">
+            <img src="paddle_aerator.jpg" onerror="this.onerror=null;this.src='assets/paddle_aerator.jpg'" alt="Paddle aerator in crab pond">
             <div class="gallery-caption">Paddle Wheel Aeration</div>
           </div>
           <div class="gallery-card reveal-on-scroll delay-2">
-            <img src="assets/liming_pond.jpg" alt="Farmer liming pond">
+            <img src="liming_pond.jpg" onerror="this.onerror=null;this.src='assets/liming_pond.jpg'" alt="Farmer liming pond">
             <div class="gallery-caption">Agricultural Liming Treatment</div>
           </div>
           <div class="gallery-card reveal-on-scroll delay-3">
-            <img src="assets/mud_crab.jpg" alt="Healthy mud crab">
+            <img src="mud_crab.jpg" onerror="this.onerror=null;this.src='assets/mud_crab.jpg'" alt="Healthy mud crab">
             <div class="gallery-caption">Healthy Mud Crab (Scylla serrata)</div>
           </div>
         </div>
@@ -726,7 +727,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="footer-brand-wrap">
-        <img src="assets/aquapatrol_logo.jpg" alt="AquaPatrol Logo" class="footer-logo">
+        <img src="aquapatrol_logo.jpg" onerror="this.onerror=null;this.src='assets/aquapatrol_logo.jpg'" alt="AquaPatrol Logo" class="footer-logo">
         <div>
           <div class="footer-brand-title">AquaPatrol</div>
           <div style="font-size:13px;color:#9fc7af" data-i18n="footer_text">
